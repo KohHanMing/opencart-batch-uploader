@@ -1,0 +1,11 @@
+uploads/cat.csv
+uploads/product.csv
+uploads/product_category.csv
+uploads/product_desc.csv
+uploads/product_filter.csv
+uploads/product_layout.csv
+uploads/product_option.csv
+uploads/product_option_value.csv
+uploads/product_store.csv
+*.jpg
+*.jar
