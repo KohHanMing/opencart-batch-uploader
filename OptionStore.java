@@ -1,12 +1,12 @@
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 
 public class OptionStore {
-    private Hashtable<Integer, List<HashEntry<Integer,Integer>>> store;
+    private HashMap<Integer, List<HashEntry<Integer,Integer>>> store;
 
     public OptionStore() {
-        Hashtable<Integer, List<HashEntry<Integer,Integer>>> temp = new Hashtable<>();
+        HashMap<Integer, List<HashEntry<Integer,Integer>>> temp = new HashMap<>();
 
         //AP Landscape
         Integer optionOne = 15;

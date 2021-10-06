@@ -1,15 +1,15 @@
 import java.util.List;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 public class ProductDataManager {
     private List<List<String>> productData;
-    private Hashtable<String, Integer> modelNums;
+    private HashMap<String, Integer> modelNums;
 
 
 
     public ProductDataManager(List<List<String>> productData) {
         this.productData = productData;
-        modelNums = new Hashtable<>(); // next model num, which is curr max + 1
+        modelNums = new HashMap<>(); // next model num, which is curr max + 1
         modelNums.put("abstract", WriterMain.MAX_MODEL_ABSTRACT + 1);
         modelNums.put("artistic", WriterMain.MAX_MODEL_ARTISTIC + 1);
         modelNums.put("cute", WriterMain.MAX_MODEL_CUTE + 1);

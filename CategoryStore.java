@@ -3,13 +3,13 @@
  * The pair maps the Category Name to a Category ID as set in the Opencart SQL database.
  */
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 public class CategoryStore {
-    private Hashtable<String, Integer> store;
+    private HashMap<String, Integer> store;
 
     public CategoryStore() {
-        Hashtable<String, Integer> temp = new Hashtable<>();
+        HashMap<String, Integer> temp = new HashMap<>();
         temp.put("Cityscape".toLowerCase(), 113);
         temp.put("Floral".toLowerCase(), 114);
         temp.put("Nature".toLowerCase(), 115);
