@@ -1,8 +1,12 @@
+package formatter;
+
+import manager.ProductDataManager;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public class ProductStoreFormatter extends Formatter {
-    public ProductStoreFormatter(int maxId) {
+public class ProductFilterFormatter extends Formatter {
+    public ProductFilterFormatter(int maxId) {
         super(maxId);
     }
 
@@ -17,8 +21,8 @@ public class ProductStoreFormatter extends Formatter {
             dataRow.add(String.valueOf(super.getId()));
             super.incrementId();
 
-            //store id
-            dataRow.add(String.valueOf(0));
+            //filter_id
+            dataRow.add(String.valueOf(20));
             data.add(dataRow);
         }
 

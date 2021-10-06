@@ -1,8 +1,12 @@
+package formatter;
+
+import manager.ProductDataManager;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public class ProductLayoutFormatter extends Formatter {
-    public ProductLayoutFormatter(int maxId) {
+public class ProductStoreFormatter extends Formatter {
+    public ProductStoreFormatter(int maxId) {
         super(maxId);
     }
 
@@ -18,9 +22,6 @@ public class ProductLayoutFormatter extends Formatter {
             super.incrementId();
 
             //store id
-            dataRow.add(String.valueOf(0));
-
-            //layout id
             dataRow.add(String.valueOf(0));
             data.add(dataRow);
         }

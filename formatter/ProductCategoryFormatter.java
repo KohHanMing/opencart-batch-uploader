@@ -1,3 +1,8 @@
+package formatter;
+
+import manager.ProductDataManager;
+import storage.CategoryStore;
+
 import java.util.List;
 import java.util.ArrayList;
 

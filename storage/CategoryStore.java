@@ -2,6 +2,7 @@
  * This class creates a Store object that contains a key-value pair of relevant categories.
  * The pair maps the Category Name to a Category ID as set in the Opencart SQL database.
  */
+package storage;
 
 import java.util.HashMap;
 

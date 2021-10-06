@@ -1,3 +1,8 @@
+/**
+ * This class checks the dimensions of a picture and assigns it a dimension type.
+ */
+package manager;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -10,14 +15,14 @@ import javax.imageio.stream.ImageInputStream;
 import javax.imageio.ImageReader;
 
 
-public class DimensionParser {
+public class DimensionManager {
     private List<List<String>> dimensionData;
 
-    public DimensionParser (List<List<String>> dimensionData) {
+    public DimensionManager (List<List<String>> dimensionData) {
         this.dimensionData = dimensionData;
     }
 
-    public static DimensionParser createDimensionParser(String path) {
+    public static DimensionManager createDimensionManager(String path) {
         List<List<String>> dimensionData = new ArrayList<>();
                 
         File folder = new File(path);
@@ -34,7 +39,7 @@ public class DimensionParser {
             
 
         }
-        return new DimensionParser(dimensionData);
+        return new DimensionManager(dimensionData);
     }
 
     public static String getNameFromFile(File file) {

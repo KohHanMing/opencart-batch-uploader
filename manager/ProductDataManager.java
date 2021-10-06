@@ -1,3 +1,7 @@
+package manager;
+
+import main.WriterMain;
+
 import java.util.List;
 import java.util.HashMap;
 

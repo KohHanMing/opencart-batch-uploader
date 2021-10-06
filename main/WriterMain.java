@@ -1,4 +1,18 @@
+package main;
 import java.util.List;
+
+import formatter.Formatter;
+import formatter.ProductCategoryFormatter;
+import formatter.ProductDescFormatter;
+import formatter.ProductFilterFormatter;
+import formatter.ProductFormatter;
+import formatter.ProductLayoutFormatter;
+import formatter.ProductOptFormatter;
+import formatter.ProductOptValFormatter;
+import formatter.ProductStoreFormatter;
+import manager.DimensionManager;
+import manager.ProductDataManager;
+import utils.WriterUtils;
 
 public class WriterMain {
     public static final int MAX_PRODUCT_ID = 15624;
@@ -42,9 +56,9 @@ public class WriterMain {
 
     public static WriterMain createWriter(String filePath) {
         List<List<String>> productData = WriterUtils.readFromCsv(filePath);
-        DimensionParser dimensionParser = DimensionParser.createDimensionParser("./images/compressed");
-        for (int i = 0; i < dimensionParser.getSize(); i++) {
-            productData.get(i).add(2, dimensionParser.getDimensionType(i)); // add to index 2, in front of description
+        DimensionManager dimensionManager = DimensionManager.createDimensionManager("./images/compressed");
+        for (int i = 0; i < dimensionManager.getSize(); i++) {
+            productData.get(i).add(2, dimensionManager.getDimensionType(i)); // add to index 2, in front of description
         }
 
         return new WriterMain(new ProductDataManager(productData));

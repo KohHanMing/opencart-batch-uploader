@@ -1,3 +1,7 @@
+package formatter;
+
+import manager.ProductDataManager;
+
 import java.util.List;
 
 public abstract class Formatter {
