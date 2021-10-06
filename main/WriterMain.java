@@ -39,24 +39,24 @@ public class WriterMain {
     public static void main(String[] args) {
         
         
-        String myFilePath = ".\\uploads\\upload - comma delimited.csv";
-        String myCatSavePath = ".\\uploads\\cat.csv";
+        String myFilePath = ".\\.data\\source\\upload - comma delimited.csv";
+        String myCatSavePath = ".\\.data\\target\\cat.csv";
         WriterMain writerMain = createWriter(myFilePath);
         WriterUtils.writeToCsv(writerMain.productDataManager.getProductData(), myCatSavePath); //verifying initial data
 
-        writerMain.runFormatter(new ProductFormatter(MAX_PRODUCT_ID), ".\\uploads\\product.csv");
-        writerMain.runFormatter(new ProductDescFormatter(MAX_PRODUCT_ID), ".\\uploads\\product_desc.csv");
-        writerMain.runFormatter(new ProductFilterFormatter(MAX_PRODUCT_ID), ".\\uploads\\product_filter.csv");
-        writerMain.runFormatter(new ProductOptFormatter(MAX_PRODUCT_ID, MAX_PRODUCT_OPT_ID), ".\\uploads\\product_option.csv");
-        writerMain.runFormatter(new ProductOptValFormatter(MAX_PRODUCT_ID, MAX_PRODUCT_OPT_ID, MAX_PRODUCT_OPT_VAL_ID), ".\\uploads\\product_option_value.csv");
-        writerMain.runFormatter(new ProductCategoryFormatter(MAX_PRODUCT_ID), ".\\uploads\\product_category.csv");
-        writerMain.runFormatter(new ProductLayoutFormatter(MAX_PRODUCT_ID), ".\\uploads\\product_layout.csv");
-        writerMain.runFormatter(new ProductStoreFormatter(MAX_PRODUCT_ID), ".\\uploads\\product_store.csv");
+        writerMain.runFormatter(new ProductFormatter(MAX_PRODUCT_ID), ".\\.data\\target\\product.csv");
+        writerMain.runFormatter(new ProductDescFormatter(MAX_PRODUCT_ID), ".\\.data\\target\\product_desc.csv");
+        writerMain.runFormatter(new ProductFilterFormatter(MAX_PRODUCT_ID), ".\\.data\\target\\product_filter.csv");
+        writerMain.runFormatter(new ProductOptFormatter(MAX_PRODUCT_ID, MAX_PRODUCT_OPT_ID), ".\\.data\\target\\product_option.csv");
+        writerMain.runFormatter(new ProductOptValFormatter(MAX_PRODUCT_ID, MAX_PRODUCT_OPT_ID, MAX_PRODUCT_OPT_VAL_ID), ".\\.data\\target\\product_option_value.csv");
+        writerMain.runFormatter(new ProductCategoryFormatter(MAX_PRODUCT_ID), ".\\.data\\target\\product_category.csv");
+        writerMain.runFormatter(new ProductLayoutFormatter(MAX_PRODUCT_ID), ".\\.data\\target\\product_layout.csv");
+        writerMain.runFormatter(new ProductStoreFormatter(MAX_PRODUCT_ID), ".\\.data\\target\\product_store.csv");
     }
 
     public static WriterMain createWriter(String filePath) {
         List<List<String>> productData = WriterUtils.readFromCsv(filePath);
-        DimensionManager dimensionManager = DimensionManager.createDimensionManager("./images/compressed");
+        DimensionManager dimensionManager = DimensionManager.createDimensionManager("./.data/images/compressed");
         for (int i = 0; i < dimensionManager.getSize(); i++) {
             productData.get(i).add(2, dimensionManager.getDimensionType(i)); // add to index 2, in front of description
         }
