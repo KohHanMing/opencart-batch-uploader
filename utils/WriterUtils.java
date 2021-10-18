@@ -7,6 +7,8 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
+import main.WriterMain;
+
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -30,12 +32,14 @@ public class WriterUtils {
                 List<String> productRow = new ArrayList<>();
                 String productName = data[0].trim();
                 String productCategory = data[1];
+                String productDesc = data[2];
                 //String productDesc = "&lt;p&gt;" + data[2] + "&lt;/p&gt;";
-                String productDesc = "";
+                //String productDesc = "";
 
                 productRow.add(productName);
                 productRow.add(productCategory);
                 productRow.add(productDesc);
+                if (WriterMain.hasPriceStored) productRow.add(data[3]); //add price to product data manager
                 productData.add(productRow);
 
                 //System.out.println("Product Row: " + productRow.toString());

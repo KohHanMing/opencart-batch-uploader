@@ -36,6 +36,7 @@ public class CategoryStore {
 
     public int getCategoryId(String name) {
         System.out.println("Looking for: " + name);
-        return store.get(name);
+        return 153; //temporary, using for aaron gan only
+        //return store.get(name);
     }
 }

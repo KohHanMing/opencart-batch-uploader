@@ -24,6 +24,7 @@ public class ProductDataManager {
         modelNums.put("nature", WriterMain.MAX_MODEL_NATURE + 1);
         modelNums.put("singapore", WriterMain.MAX_MODEL_SINGAPORE + 1);
         modelNums.put("skyscape", WriterMain.MAX_MODEL_SKYSCAPE + 1);
+        modelNums.put("Aaron Gan", WriterMain.MAX_MODEL_AARON + 1);
 
     }
 
@@ -46,23 +47,28 @@ public class ProductDataManager {
             category = category.substring(0, 1).toUpperCase() + category.substring(1);
         }
 
-        return "catalog/Products/Art Print/AP-" + category + "/" + getProductName(index) + ".jpg";
+        return "catalog/" + category + "/" + getProductName(index) + ".jpg";
+        //return "catalog/Products/Art Print/AP-" + category + "/" + getProductName(index) + ".jpg";
         //return "catalog/Products/Art Print/AP-" + category + "/" + model + "-min.jpg";
     }
 
     public int generatePrice(int index) {
-        String dimensionType = getProductDimensionType(index);
         int price = 0;
-        switch (dimensionType) {
-            case "landscape":
-                price = 161;
-                break;
-            case "portrait":
-                price = 161;
-                break;
-            case "square":
-                price = 235;
-                break;
+        if (WriterMain.hasPriceStored) {
+            price = Integer.valueOf(productData.get(index).get(4));
+        } else {
+            String dimensionType = getProductDimensionType(index);
+            switch (dimensionType) {
+                case "landscape":
+                    price = 161;
+                    break;
+                case "portrait":
+                    price = 161;
+                    break;
+                case "square":
+                    price = 235;
+                    break;
+            }
         }
         return price;
     }
@@ -98,7 +104,8 @@ public class ProductDataManager {
     }
 
     public String getProductCategoryType(int index) {
-        return productData.get(index).get(1).toLowerCase().trim();
+        //return productData.get(index).get(1).toLowerCase().trim();
+        return productData.get(index).get(1);
     }
 
     public String getCapitalisedProductCategoryType(int index) {
@@ -125,6 +132,7 @@ public class ProductDataManager {
         modelNums.put("fengshui", WriterMain.MAX_MODEL_FENGSHUI + 1);
         modelNums.put("floral", WriterMain.MAX_MODEL_FLORAL + 1);
         modelNums.put("seaside", WriterMain.MAX_MODEL_SEASIDE + 1);
+        modelNums.put("skyscape", WriterMain.MAX_MODEL_AARON + 1);
     }
 
     public List<List<String>> getProductData() {

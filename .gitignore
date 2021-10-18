@@ -9,3 +9,4 @@
 .data/target/product_store.csv
 *.jpg
 *.jar
+.data/target/old/
