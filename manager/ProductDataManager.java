@@ -25,6 +25,7 @@ public class ProductDataManager {
         modelNums.put("singapore", WriterMain.MAX_MODEL_SINGAPORE + 1);
         modelNums.put("skyscape", WriterMain.MAX_MODEL_SKYSCAPE + 1);
         modelNums.put("Aaron Gan", WriterMain.MAX_MODEL_AARON + 1);
+        modelNums.put("Jays Phua", WriterMain.MAX_MODEL_JAYS + 1);
 
     }
 
@@ -110,7 +111,18 @@ public class ProductDataManager {
 
     public String getCapitalisedProductCategoryType(int index) {
         String temp = productData.get(index).get(1).toLowerCase().trim();
-        return temp.substring(0, 1).toUpperCase() + temp.substring(1);
+        String[] words = temp.split(" ");
+        String ret = "";
+        if (words.length == 1) {
+            ret = temp.substring(0, 1).toUpperCase() + temp.substring(1);
+        } else {
+            ret += words[0].substring(0, 1).toUpperCase() + words[0].substring(1);
+            for (int i = 1; i < words.length; i++) {
+                ret += " " + words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
+            }
+        }
+
+        return ret;
     }
 
     public String getProductDimensionType(int index) {

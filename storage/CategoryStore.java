@@ -31,12 +31,16 @@ public class CategoryStore {
         temp.put("Black and White".toLowerCase(), 207);
         temp.put("Map".toLowerCase(), 208);
 
+        //Artists
+        temp.put("Aaron Gan", 153);
+        temp.put("Jays Phua", 211);
+
         this.store = temp;
     }
 
     public int getCategoryId(String name) {
         System.out.println("Looking for: " + name);
-        return 153; //temporary, using for aaron gan only
-        //return store.get(name);
+        //return 153; //temporary, using for aaron gan only
+        return store.get(name);
     }
 }
