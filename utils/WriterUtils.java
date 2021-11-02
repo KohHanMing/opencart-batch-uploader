@@ -51,13 +51,15 @@ public class WriterUtils {
                     String length = data[3];
                     String height = data[4];
                     String desc = data[5];
+
+                    //If the info exists, add it to description, otherwise ignore
                     if (!year.isBlank()) productDesc += encodeInHtml("Year: " + data[2]);
                     if (!length.isBlank() && !height.isBlank()) {
                         String formattedLength = "L" + length + DIMENSION_UNITS;
                         String formattedHeight = "H" + height + DIMENSION_UNITS;
                         productDesc += encodeInHtml("Dimensions: " + formattedLength + " x " + formattedHeight);
                     }
-                    if (!desc.isBlank()) productDesc += encodeInHtml(data[5]); //text description (if any)
+                    if (!desc.isBlank()) productDesc += encodeInHtml(data[5]);
                 }
                 productRow.add(productDesc);
 
