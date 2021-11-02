@@ -20,27 +20,50 @@ import java.io.IOException;
 
 public class WriterUtils {
     private static final char CSV_DELIMITER = ',';
+    private static final String DIMENSION_UNITS = "cm";
     public static List<List<String>> readFromCsv(String filePath) {
         List<List<String>> productData = new ArrayList<>();
         try {
             CSVParser parser = new CSVParserBuilder().withSeparator(CSV_DELIMITER).build();
             CSVReader csvReader = new CSVReaderBuilder(new FileReader(filePath)).withCSVParser(parser).build();
             String[] data;
+
             csvReader.readNext(); //ignore first line
             
             while ((data = csvReader.readNext()) != null) {
                 //System.out.println(data.toString());
                 List<String> productRow = new ArrayList<>();
-                String productName = data[0].trim();
-                String productCategory = data[1];
-                String productDesc = data[2];
-                //String productDesc = "&lt;p&gt;" + data[2] + "&lt;/p&gt;";
-                //String productDesc = "";
 
+                //Add name
+                String productName = data[0].trim();
                 productRow.add(productName);
+                
+                //Add category
+                String productCategory = data[1];
                 productRow.add(productCategory);
+                
+                //Add description
+                String productDesc = "";
+                if (WriterMain.hasEncodingInDesc) {
+                    productDesc = data[5]; //pull directly from desc column
+                } else {
+                    String year = data[2];
+                    String length = data[3];
+                    String height = data[4];
+                    String desc = data[5];
+                    if (!year.isBlank()) productDesc += encodeInHtml("Year: " + data[2]);
+                    if (!length.isBlank() && !height.isBlank()) {
+                        String formattedLength = "L" + length + DIMENSION_UNITS;
+                        String formattedHeight = "H" + height + DIMENSION_UNITS;
+                        productDesc += encodeInHtml("Dimensions: " + formattedLength + " x " + formattedHeight);
+                    }
+                    if (!desc.isBlank()) productDesc += encodeInHtml(data[5]); //text description (if any)
+                }
                 productRow.add(productDesc);
-                if (WriterMain.hasPriceStored) productRow.add(data[3]); //add price to product data manager
+
+                //Add price
+                if (WriterMain.hasPriceStored) productRow.add(data[6]); //add price to product data manager
+
                 productData.add(productRow);
 
                 //System.out.println("Product Row: " + productRow.toString());
@@ -74,5 +97,9 @@ public class WriterUtils {
             System.out.println("IO exception encountered. Check for opened files");
             e.printStackTrace();
         }
+    }
+
+    private static String encodeInHtml(String string) {
+        return "&lt;p&gt;" + string + "&lt;/p&gt;";
     }
 }

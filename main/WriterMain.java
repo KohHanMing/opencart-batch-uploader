@@ -33,6 +33,7 @@ public class WriterMain {
     public static final int MAX_MODEL_JAYS = 23;
 
     public static final boolean hasPriceStored = true;
+    public static final boolean hasEncodingInDesc = false;
     public static final boolean hasOptions = false;
 
     public ProductDataManager productDataManager;  //name, category, dimension type, description (concatenation of year, dimension detalis and text desc), price(if applicable)
