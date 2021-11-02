@@ -26,6 +26,7 @@ public class WriterUtils {
             CSVParser parser = new CSVParserBuilder().withSeparator(CSV_DELIMITER).build();
             CSVReader csvReader = new CSVReaderBuilder(new FileReader(filePath)).withCSVParser(parser).build();
             String[] data;
+            csvReader.readNext(); //ignore first line
             
             while ((data = csvReader.readNext()) != null) {
                 //System.out.println(data.toString());

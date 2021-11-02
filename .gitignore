@@ -10,3 +10,4 @@
 *.jpg
 *.jar
 .data/target/old/
+.data/source/product-info old.csv
