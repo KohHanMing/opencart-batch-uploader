@@ -10,7 +10,7 @@ import formatter.ProductLayoutFormatter;
 import formatter.ProductOptFormatter;
 import formatter.ProductOptValFormatter;
 import formatter.ProductStoreFormatter;
-import manager.DimensionManager;
+import manager.ImageManager;
 import manager.ProductDataManager;
 import utils.WriterUtils;
 
@@ -63,10 +63,10 @@ public class WriterMain {
 
     public static WriterMain createWriter(String filePath) {
         List<List<String>> productData = WriterUtils.readFromCsv(filePath);
-        DimensionManager dimensionManager = DimensionManager.createDimensionManager("./.data/images");
+        ImageManager imageManager = ImageManager.createImageManager("./.data/images");
         try {
-            for (int i = 0; i < dimensionManager.getSize(); i++) {
-                productData.get(i).add(2, dimensionManager.getDimensionType(i)); // add to index 2, in front of description
+            for (int i = 0; i < imageManager.getSize(); i++) {
+                productData.get(i).add(2, imageManager.getDimensionType(i)); // add to index 2, in front of description
             }
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();

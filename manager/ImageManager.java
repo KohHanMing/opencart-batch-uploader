@@ -15,36 +15,39 @@ import javax.imageio.stream.ImageInputStream;
 import javax.imageio.ImageReader;
 
 
-public class DimensionManager {
-    private List<List<String>> dimensionData;
+public class ImageManager {
+    private List<List<String>> imageData; //name (without file extension), dimension type, filepath (with file extension)
 
-    public DimensionManager (List<List<String>> dimensionData) {
-        this.dimensionData = dimensionData;
+    public ImageManager (List<List<String>> imageData) {
+        this.imageData = imageData;
     }
 
-    public static DimensionManager createDimensionManager(String path) {
-        List<List<String>> dimensionData = new ArrayList<>();
+    public static ImageManager createImageManager(String path) {
+        List<List<String>> imageData = new ArrayList<>();
                 
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
             List<String> dimensionRow = new ArrayList<>();
-            String name = getNameFromFile(listOfFiles[i]);
+            String filePath = listOfFiles[i].getName();
+            System.out.println(filePath);
+            String name = getNameFromFile(filePath);
             Dimension dimension = getDimensionsFromFile(listOfFiles[i]);
             String type = setDimensionType(dimension);
             dimensionRow.add(name);
             dimensionRow.add(type);
-            dimensionData.add(dimensionRow);
+            dimensionRow.add(filePath);
+
+            imageData.add(dimensionRow);
             
 
         }
-        return new DimensionManager(dimensionData);
+        return new ImageManager(imageData);
     }
 
-    public static String getNameFromFile(File file) {
-        String raw = file.getName();
-        String processed = raw.substring(0, raw.lastIndexOf('.'));
+    public static String getNameFromFile(String filePath) {
+        String processed = filePath.substring(0, filePath.lastIndexOf('.'));
         return processed;
     }
 
@@ -85,19 +88,19 @@ public class DimensionManager {
     }
 
     public String getName(int i) {
-        return dimensionData.get(i).get(0);
+        return imageData.get(i).get(0);
     }
 
     public String getDimensionType(int i) {
-        return dimensionData.get(i).get(1);
+        return imageData.get(i).get(1);
     }
 
     public int getSize() {
-        return dimensionData.size();
+        return imageData.size();
     }
 
     public void printAll() {
-        for (int i = 0; i < dimensionData.size(); i++) {
+        for (int i = 0; i < imageData.size(); i++) {
             System.out.println("Name: " + getName(i) + ", Type: " + getDimensionType(i));
         }
     }
